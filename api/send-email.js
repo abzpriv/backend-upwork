@@ -1,10 +1,19 @@
+import express from "express";
+import cors from "cors";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
-  }
+dotenv.config();
 
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// ✅ Middleware
+app.use(express.json());
+app.use(cors());
+
+// ✅ Email Sending Route
+app.post("/send-email", async (req, res) => {
   const { fullName, email, phone, password } = req.body;
 
   // ✅ Validate Required Fields
@@ -73,11 +82,16 @@ export default async function handler(req, res) {
       `,
     };
 
+    // ✅ Send Email
     await transporter.sendMail(mailOptions);
-
-    return res.status(200).json({ message: "✅ Email sent successfully!" });
+    res.status(200).json({ message: "✅ Email sent successfully!" });
   } catch (error) {
     console.error("❌ Email Sending Error:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
-}
+});
+
+// ✅ Start Server
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});

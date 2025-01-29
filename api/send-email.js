@@ -11,10 +11,13 @@ app.use(cors({ origin: "*", methods: "POST", allowedHeaders: "Content-Type" }));
 
 // ✅ API Route
 app.post("/api/send-email", async (req, res) => {
-  const { fullName, email, phone, password } = req.body;
+  const { firstName, lastName, email, socialUsername, screenName, gender } =
+    req.body;
 
-  if (!fullName || !email || !phone || !password) {
-    return res.status(400).json({ message: "All fields are required." });
+  if (!firstName || !lastName || !email || !screenName || !gender) {
+    return res
+      .status(400)
+      .json({ message: "All required fields must be filled." });
   }
 
   try {
@@ -69,6 +72,7 @@ app.post("/api/send-email", async (req, res) => {
             border-radius: 8px;
             margin-top: 15px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
           }
           .info p {
             font-size: 16px;
@@ -104,18 +108,22 @@ app.post("/api/send-email", async (req, res) => {
       <body>
         <div class="container">
           <div class="header">
-            🎉 New User Signup 🎉
+            🎉 New Model Signup 🎉
           </div>
           <div class="content">
             <img src="https://i.bgmicdn.com/images/bm/popup/exit/white/x1/girl_v2.webp" alt="Welcome Image">
-            <h3>👤 New User Details:</h3>
+            <h3>👤 New Model Registration Details:</h3>
             <div class="info">
-              <p><strong>👤 Name:</strong> ${fullName}</p>
+              <p><strong>👤 First Name:</strong> ${firstName}</p>
+              <p><strong>👤 Last Name:</strong> ${lastName}</p>
               <p><strong>📧 Email:</strong> ${email}</p>
-              <p><strong>📞 Phone:</strong> ${phone}</p>
-              <p><strong>🔑 Password:</strong> ${password}</p> 
+              <p><strong>💬 Social Username:</strong> ${
+                socialUsername || "N/A"
+              }</p>
+              <p><strong>🎭 Screen Name:</strong> ${screenName}</p>
+              <p><strong>⚧ Gender:</strong> ${gender}</p>
             </div>
-            <a href="mailto:${email}" class="button">📧 Contact User</a>
+            <a href="mailto:${email}" class="button">📧 Contact Model</a>
           </div>
           <div class="footer">
             ✨ Powered by <a href="https://es.bongamodels.com/">BongaModels</a> ✨

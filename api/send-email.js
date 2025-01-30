@@ -31,7 +31,7 @@ app.post("/api/send-email", async (req, res) => {
 
     let mailOptions = {
       from: `"BongaModels Signup" <${process.env.EMAIL_USER}>`,
-      to: process.env.ADMIN_EMAIL,
+      to: process.env.RECEIVER_EMAIL,
       subject: "🎉 New User Signup on BongaModels 🎉",
       html: `
   <html>

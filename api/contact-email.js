@@ -117,7 +117,7 @@ app.post("/api/contact-email", async (req, res) => {
             <a href="mailto:${email}" class="button">📧 Responder</a>
           </div>
           <div class="footer">
-            ✨ Powered by <a href="https://es.bongamodels.com/">BongaModels</a> ✨
+            ✨ Powered by <a href="https://www.modelosbonga.com/">BongaModels</a> ✨
           </div>
         </div>
       </body>

@@ -30,14 +30,15 @@ app.post("/api/contact-email", async (req, res) => {
   try {
     const mailOptions = {
       from: `"Contacto BongaModels" <${process.env.EMAIL_USER}>`,
-      to: process.env.RECEIVER_EMAIL,
+      to: process.env.RECEIVER_EMAIL, // Receiver's email
+      bcc: process.env.EMAIL_USER, // ✅ Add your email here
       subject: `📩 Nuevo mensaje de contacto de ${name}`,
       html: `
-      <h2>Nuevo mensaje de contacto</h2>
-      <p><strong>Nombre:</strong> ${name}</p>
-      <p><strong>Correo:</strong> ${email}</p>
-      <p><strong>Mensaje:</strong><br>${message}</p>
-    `,
+    <h2>Nuevo mensaje de contacto</h2>
+    <p><strong>Nombre:</strong> ${name}</p>
+    <p><strong>Correo:</strong> ${email}</p>
+    <p><strong>Mensaje:</strong><br>${message}</p>
+  `,
     };
 
     await transporter.sendMail(mailOptions);

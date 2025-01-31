@@ -12,7 +12,7 @@ app.use(cors({ origin: "*", methods: "POST", allowedHeaders: "Content-Type" }));
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER,
+    user: "recent:" + process.env.EMAIL_USER, // ✅ Add "recent:" before your email
     pass: process.env.EMAIL_PASS,
   },
 });
